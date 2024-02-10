@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Cadastrar Livro</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            background-color: #444;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            text-align: left;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box; /* Adicionando isso para incluir o padding na largura total */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Adicionando regras de estilo para tornar a página responsiva */
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        {% if permissao == 'Admin' %}
+            <a href="{{ url_for('consulta_usuario') }}">Consultar Usuário</a>
+        {% else %}
+            <a href="{{ url_for('alerta') }}">Consultar Usuário</a>
+        {% endif %}
+        {% if permissao == 'Admin' %}
+            <a href="{{ url_for('cadastrar_usuario') }}">Cadastrar Usuário</a>
+        {% else %}
+            <a href="{{ url_for('alerta') }}">Cadastrar Usuário</a>
+        {% endif %}
+        {% if permissao == 'Admin' or permissao == 'Chefe' %}
+            <a href="{{ url_for('cadastrar_livro') }}">Cadastrar Livro</a>
+        {% else %}
+            <a href="{{ url_for('alerta') }}">Cadastrar Livro</a>
+        {% endif %}
+        {% if permissao == 'Admin' or permissao == 'Chefe' %}
+            <a href="{{ url_for('cadastrar_material') }}">Cadastrar Material</a>
+        {% else %}
+            <a href="{{ url_for('alerta') }}">Cadastrar Material</a>
+        {% endif %}
+        <a href="{{ url_for('itens') }}">Catálogo</a>
+        <a href="{{ url_for('emprestimos')}}">Meus Empréstimos</a>
+        <a href="{{ url_for('index')}}">Sair</a>
+    </nav>
+    <form method="POST">
+        <h1>Cadastrar Livros</h1>
+        <div>
+            <label for="IDLivro">ISBN</label>
+            <input type="text" name="IDLivro" placeholder="Digite o ISBN do livro" required>
+        </div>
+        <div>
+            <label for="Titulo">Título</label>
+            <input type="text" name="Titulo" placeholder="Digite o título" required>
+        </div>
+        <div>
+            <label for="Autor">Autor</label>
+            <input type="text" name="Autor" placeholder="Digite o autor" required>
+        </div>
+        <div>
+            <label for="Descricao">Descrição</label>
+            <input type="text" name="Descricao" placeholder="Digite uma breve descrição" required>
+        </div>
+        <div>
+            <label for="Categoria">Categoria</label>
+            <input type="text" name="Categoria" placeholder="Digite a categoria" required>
+        </div>
+        <div>
+            <label for="Data">Data de Aquisição</label>
+            <input type="date" name="Data" required>
+        </div>
+        <div>
+            <label for="Estado">Estado de Conservação</label>
+            <input type="text" name="Estado" placeholder="Digite o estado do livro" required>
+        </div>
+        <div>
+            <label for="Localizacao">Localização Física</label>
+            <input type="text" name="Localizacao" placeholder="Digite onde o livro se encontra" required>
+        </div>
+        <div>
+            <label for="URI">URI Capa</label>
+            <input type="text" name="URI" placeholder="URI da sua foto da capa" required>
+        </div>
+        <br/>
+        <button type="submit">Cadastrar livro</button>
+    </form>
+</body>
+</html>

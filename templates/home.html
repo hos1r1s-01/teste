@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #3498db, #2ecc71);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff; /* Definindo a cor do texto como branco */
+        }
+
+        h1 {
+            color: #fff; /* Definindo a cor do título como branco */
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #fff; /* Mudando a cor do botão para branco */
+            color: #3498db; /* Mudando a cor do texto do botão para a cor principal do gradiente */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ecf0f1; /* Mudando a cor do fundo do botão ao passar o mouse */
+            color: #333; /* Mudando a cor do texto do botão ao passar o mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Laboratório de Materiais e Livros</h1>
+
+    <div class="button-container">
+        <button onclick="window.location.href='/login'">Ir para o Login</button>
+    </div>
+</body>
+</html>
